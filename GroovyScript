@@ -1,0 +1,28 @@
+import com.eviware.soapui.support.XmlHolder
+
+def currency=testRunner.testCase.testSuite.testCases["CountriesUsingCurrency"].getPropertyValue("currency")
+
+def req=testRunner.testCase.testSuite.testCases["CountriesUsingCurrency"].testSteps["GetCountriesUsingCurrency"].getPropertyValue("Request")
+
+def xmlReq=new XmlHolder(req)
+
+xmlReq.setNodeValue("//web:CountriesUsingCurrency/web:sISOCurrencyCode",currency)
+
+def newXml=xmlReq.getXml()
+
+testRunner.testCase.testSuite.testCases["CountriesUsingCurrency"].testSteps["GetCountriesUsingCurrency"].setPropertyValue("Request",newXml)
+
+testRunner.testCase.testSuite.testCases["CountriesUsingCurrency"].testSteps["GetCountriesUsingCurrency"].run(testRunner,context)
+
+
+
+
+
+
+
+
+
+
+
+
+
